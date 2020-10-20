@@ -1,5 +1,6 @@
 # LearnPython
 学习python编程
+# <a href="https://blog.csdn.net/tz_zs/article/details/78228542">python 占位符（百分号方式、Format 方式）</a>
 # python 递归
 ## febonacci.py
 def febonacci(i):
