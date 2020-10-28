@@ -43,4 +43,20 @@ while(len(nums) > 0):
         events.append(num)
     else:
          odds.append(num)   
-print(odds,events)         
+print(odds,events)        
+
+# python 变量列表
+colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
+ 
+for color in colors:
+    print("color is :",color)
+    
+# python格式化输出
+### 实例1
+for x in range(1, 11):
+     print('{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x))
+     
+### 实例2
+ print('{}网址： "{}!"'.format('菜鸟教程', 'www.runoob.com'))
+菜鸟教程网址： "www.runoob.com!"
+     
