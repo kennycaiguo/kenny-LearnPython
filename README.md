@@ -67,7 +67,7 @@ from email.header import Header
 
 mail_host ="smtp.gmail.com"
 mail_user="caivenus2019@gmail.com"
-mail_pass="Venus2003"
+mail_pass="你的账户密码" #这里要改成你的账户密码
 port=465
 
 sender = "caivenus2019@gmail.com"
