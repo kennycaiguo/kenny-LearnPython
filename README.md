@@ -102,7 +102,7 @@ file.flush()
 file.close()
 exit(0)
 
-# python读取xml文件的内容并且解析
+# python读取xml文件的内容并且解析1
 from xml.etree import ElementTree as et ## 这个用来解析xml字符串
 xml1=open("person.xml") 
 lines=[]
@@ -123,3 +123,17 @@ child2 =root.__getitem__(1)
 child3 =root.__getitem__(2)
 
 print(child1,child2,child3)
+
+# python读取xml文件，并且删除每一个子节点的值：very good
+import xml.etree.ElementTree as et
+
+tree = et.ElementTree(file="persons.xml") #### 这个文件必须放在虚拟环境的env文件夹中
+# print(tree)
+root =  tree.getroot() ####获取跟节点
+# print(root)
+# print(root[0][0].text)
+for child in root: # 遍历root的子节点
+    print(child.tag,"\nformat:name value")
+    for childnode in child: ####遍历每一个节点的子节点
+        print(childnode.tag,childnode.text)
+    print("================")
