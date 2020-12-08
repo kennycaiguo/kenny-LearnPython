@@ -103,22 +103,17 @@ file.close()
 exit(0)
 
 # python读取xml文件的内容并且解析
-from xml.etree import ElementTree as et
-# xml = """<books>
-#   <book id='37476'>aaaa</book>
-#   <book id='83727'>bbbb</book>
-#  </books>"""
-xml1=open("person.xml")
+from xml.etree import ElementTree as et ## 这个用来解析xml字符串
+xml1=open("person.xml") 
 lines=[]
 lines2=[]
 lines=xml1.readlines()
-lines=lines[1:]#这句话的作用是去除xml声明语句,因为后面的xml解析不需要
+lines=lines[1:] #这句话的作用是去除xml声明语句,因为后面的xml解析不需要
 for x in lines:
     if x[len(x)-1]=='\n':
-       lines2.append(x[0:len(x)-1])#去除换行符
+       lines2.append(x[0:len(x)-1]) #去除换行符
     else:
         lines2.append(x)
-# print(lines2)
 strlines = "".join(lines2)
 print(strlines)
 root = et.fromstring(strlines)
