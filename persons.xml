@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<persons>
+    <person>
+        <name>Jack</name>
+        <age>20</age>
+        <gender>male</gender>
+    </person>
+    <person>
+        <name>Jackline</name>
+        <age>18</age>
+        <gender>female</gender>
+    </person>
+    <person>
+        <name>Jacky</name>
+        <age>21</age>
+        <gender>male</gender>
+    </person>
+</persons>
+
