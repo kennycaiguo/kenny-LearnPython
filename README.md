@@ -137,3 +137,4 @@ for child in root: # 遍历root的子节点
     for childnode in child: ####遍历每一个节点的子节点
         print(childnode.tag,childnode.text)
     print("================")
+    
