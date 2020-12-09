@@ -138,3 +138,14 @@ for child in root: # 遍历root的子节点
         print(childnode.tag,childnode.text)
     print("================")
     
+# Python 把字典输出到excel文件
+import pandas as pds
+
+dict={
+       "Jack":{"chinese":80,"english":90,"physics":78,"math":77},
+       "Lili":{"chinese":70,"english":80,"physics":70,"math":67},
+       "Mike":{"chinese":85,"english":70,"physics":90,"math":87},
+       "Christy":{"chinese":60,"english":91,"physics":70,"math":70},
+      }
+df =pds.DataFrame(dict)
+df.to_excel('student.xlsx')
