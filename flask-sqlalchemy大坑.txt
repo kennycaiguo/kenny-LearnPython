@@ -1,0 +1,26 @@
+1.Mysql-python不支持windows系统，可以用mysqlclient（ MySQLdb的分支）代替
+
+2.数据库uri：
+DIALECT='mysql'
+DRIVER='mysqldb' 
+USERNAME='root'
+PASSWORD='root'
+HOST='127.0.0.1'
+PORT='3306'
+DATABASE='db_demo1'
+SQLALCHEMY_DATABASE_URI='{}+{}://{}:{}@{}:{}/{}?charset=utf8'.format(DIALECT,DRIVER,USERNAME,PASSWORD,HOST,PORT,DATABASE)
+SQLALCHEMY_TRACK_MODIFICATIONS=False
+
+3.数据库版本与SQlAlchemy版本兼容问题：
+
+解决 sqlalchemy 报错：（1193, "Unknown system variable 'tx_isolation'"）
+2018-08-21 22:44:18 妖精哪里跑 阅读数 3781更多
+分类专栏： python  mysql
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+本文链接：https://blog.csdn.net/huolan__34/article/details/81915863
+1出现此报错的原因是使用的mysql8.0 以前用的是：tx_isolation 现在用是： transaction_isolation
+
+a.通过升级 sqlalchemy 的方法可以解决此问题， pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade sqlalchemy --ignore-installed(亲测有效————)
+
+b.通过降低，mysql 版本来解决这个问题。
+

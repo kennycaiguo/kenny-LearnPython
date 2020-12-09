@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>用JavaScript演示用户注册功能，具有重要参考价值</title>
+		<script type="text/javascript">
+			function checkUser(){
+				var usernode=document.getElementById("user");
+				var username=document.getElementById("username");
+				 //下面是匹配以中文，英文字母或下划线开始的字符串
+				var regexp=/^[\u4e00-\u9fa5_a-zA-Z][\u4e00-\u9fa5_\s\\.a-zA-Z0-9]+$/;  
+				if(usernode.value==""){
+					username.innerHTML="错误，用户名不能为空！".fontcolor("red");
+					return false;//这是为了在onsubmit事件中可以判断是否正确，以下类似
+				}else{
+					if(!regexp.test(usernode.value)){
+					username.innerHTML="错误，用户名不能于数字开头！".fontcolor("red");
+					return false;
+				}else{
+					username.innerHTML="正确".fontcolor("green");
+					return true;
+				}
+			}
+	   }
+			function checkPass(){
+				var passNode=document.getElementById("pass");
+				var password=document.getElementById("password");
+				if(passNode.value==""){
+					password.innerHTML="错误，密码不能为空！".fontcolor("red");
+					return false;
+				}else{
+					password.innerHTML="正确".fontcolor("green");
+					return true;
+				}
+			}
+			
+			function comfirm(){
+				var passNode=document.getElementById("pass");
+				var repassNode=document.getElementById("repass");
+				var comfirmnode=document.getElementById("confirm");
+				if(repassNode.value==""){
+					comfirmnode.innerHTML="文本框的内容不能为空!!".fontcolor("red");
+					return false;
+				}else{
+					if(passNode.value!=repassNode.value){
+						comfirmnode.innerHTML="错误，两次输入的密码不一样!!".fontcolor("red");
+						return false;
+					}else{
+						comfirmnode.innerHTML="正确".fontcolor("green");
+						return true;
+					}
+				}
+			}
+			
+			function checkmail(){
+				var emailNode=document.getElementById("mail");
+				var email=document.getElementById("email");
+				
+				var regex= /^([A-Za-z0-9_\-\.\u4e00-\u9fa5])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/;
+ 			 
+				      if(regex.test(emailNode.value)){
+				      	 email.innerHTML="正确".fontcolor("green");
+				      	     return true;
+				      	
+				      }else{
+				      	  email.innerHTML="错误，非法email！！".fontcolor("red");
+				      	return false;  
+				      }
+ 
+		}
+			function checkText(){//学习利用正则表达式过滤敏感词
+				var textAnode=document.getElementsByTagName("textarea")[0];
+				var textNode=document.getElementById("textspan");
+				var content=textAnode.value;
+				if(content==""){
+					textNode.innerHTML="内容不能为空".fontcolor("red");
+					return false;
+				}
+				var filter=["pussy","vagina","breast","操","逼","操逼","阴道","通奸","tmd","他妈的","cnm","操你妈","强奸","推翻","乳房","黑客","木马","诈骗","Trojans","攻击","破解","间谍","阴谋","卖国"];
+				for(var i=0;i<filter.length;i++){
+					reg=new RegExp(filter[i],"ig");
+					content=content.replace(reg,"@#$");
+				}
+				textAnode.value=content;
+				return true;
+			}
+			function checkAll(){
+				if(checkUser()&&checkPass()&&checkmail()&&confirm()&&checkText()){
+					return true;
+				}else{
+				    return false;	
+				}
+                 
+				
+			}
+		</script>
+	</head>
+	<body>
+		<form action="success.html" method="post" onsubmit="return checkAll()">
+			      <thaed><tr><td colspan="2"><div align="center">用户信息</div></td></tr></thaed> 
+				<table border="1" align="center">
+					   
+			        	<tr><td width="120">姓名:</td><td width="380"><input type="text" id="user" onblur="checkUser()" /><span id="username"></span></td></tr>
+			        	<tr><td  width="120">密码:    </td><td><input type="password" id="pass" onblur="checkPass()"/><span id="password"></span></td></tr>
+			        	<tr><td  width="120">确认密码:</td><td><input type="password" id="repass" onblur="comfirm()"/><span id="confirm"></span></td></tr>
+			        	<tr><td  width="120">邮箱:    </td><td><input type="text"  id="mail" onblur="checkmail()"/><span id="email"></span></td></tr>
+			        	<tr><td  width="120">性别:</td><td><input type="radio" id="sex" checked="checked"/>男&nbsp;&nbsp;<input type="radio" id="sex" />女</td></tr>
+			        	<tr><td  width="120">爱好:</td><td><input type="checkbox" checked="checked"/>看电视<input type="checkbox" />下棋<input  type="checkbox"/>看书<input type="checkbox"/>听音乐</td></tr>
+			        	<tr><td  width="120">城市:</td><td><select>
+			        		<option>请选择</option>
+			        		<option value="">东莞</option>
+			        		<option value="">广州</option>
+			        		<option value="">柳州</option>
+			        		<option value="">长沙</option>
+			        		<option value="">北京</option>
+			        		
+			        	</select></td></tr>
+			        	<tr><td td width="120">自我介绍:</td><td><textarea cols="20" rows="10" onblur="checkText()"></textarea><span id="textspan"></span></td></tr>
+			        	<tr><td colspan="2"><div align="center"><input type="submit" value="提交"/></div></td></tr>
+			        	 
+        </table>
+			 
+			
+		</form>
+	</body>
+</html>

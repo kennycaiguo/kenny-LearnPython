@@ -1,0 +1,5 @@
+1.pip install virtualenv  安装虚拟环境工具
+2.virtualenv venv          创建名为venv的虚拟环境
+3.cd E:\pythonstudy\Flask\
+4.E:\pythonstudy\Flask\> venv\Scripts\activate 激活虚拟环境
+5.(venv) E:\pythonstudy\Flask\> pip3 install -r flaskneeded.txt
