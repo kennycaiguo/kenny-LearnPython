@@ -1,0 +1,26 @@
+题目
+请写一个函数find_odd，参数是1个列表，请返回该列表中出现奇数次的元素
+比如 
+find_odd([1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5]) ➞ -1
+find_odd([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5]) ➞ 5
+find_odd([10]) ➞ 10
+解题思路
+循环列表
+调用列表内置统计函数计算当前元素出现次数
+出现次数模2是否不等于0
+答案
+def find_odd(lists):
+    res = []
+    for i in lists:
+        if lists.count(i) % 2 != 0:
+            if i not in res:
+                res.append(i)
+    print(res)
+
+
+lists = [1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5]
+list1 = [20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5]
+list2 = [10, 1, 1, 1, 2, 2, 10, 5]
+find_odd(lists)
+find_odd(list1)
+find_odd(list2)

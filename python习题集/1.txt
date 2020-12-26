@@ -1,0 +1,36 @@
+题目
+有一个数据list of dict如下
+
+a = [
+
+    {"test1": "123456"},
+
+    {"test2": "123456"},
+
+    {"test3": "123456"},
+
+]
+
+写入到本地一个txt文件，内容格式如下：
+
+test1,123456
+
+test2,123456
+
+test3,123456
+解题思路
+打开文件
+循环列表，提取字典
+提取key，value
+写入文件
+答案
+lists = [
+    {"yoyo1": "111111"},
+    {"yoyo2": "222222"},
+    {"yoyo3": "333333"},
+]
+
+with open("test.txt", "w+", encoding="utf-8") as f:
+    for data in lists:
+        for key, value in data.items():
+            f.write(f"{key},{value}\n")

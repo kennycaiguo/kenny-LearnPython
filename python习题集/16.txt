@@ -1,0 +1,28 @@
+题目
+写一个函数replace，该函数参数是两个字符串，
+第一个参数给出一个源，
+第二个参数是指定范围。
+要求该函数将 第一个参数里面的字符串中 落在第二个参数指定范围内的字符串替换为 # 号
+
+比如
+replace("abcdef", "c-e") ➞ "ab###f"
+replace("rattle", "r-z") ➞ "#a##le"
+replace("microscopic", "i-i") ➞ "m#croscop#c"
+replace("", "a-z") ➞ ""
+解题思路
+先将指定范围的字母提取出来
+Python里面，字符是可以直接比较大小的
+通过直接比较，将在指定范围的字符 replace 成 #
+答案
+def replace(strs, round):
+    start, end = round.split("-")
+    for i in strs:
+        if i >= start and i <= end:
+            strs = strs.replace(i, "#")
+    print(strs)
+
+
+replace("abcdef", "c-e")
+replace("rattle", "r-z")
+replace("microscopic", "i-i")
+replace("", "a-z")

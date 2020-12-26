@@ -1,0 +1,24 @@
+题目
+要求：判断数组元素是否对称。例如[1，2，0，2，1]，[1，2，3，3，2，1]这样的都是对称数组
+用Python代码判断，是对称数组打印True，不是打印False,如：
+x = [1, "a",  0, "2", 0, "a", 1]
+解题思路
+循环取值，循环次数只需要列表长度的一半
+每次取头尾对称下标的值比较
+答案
+a, b, c = [1, 2, 0, 2, 1], [1, 2, 3, 3, 2, 1], [1, 2, 3, 4, 5]
+
+
+def duicheng(lists):
+    lens = len(lists)
+    flag = True
+    for i in range(0, int(lens / 2)):
+        if lists[i] != lists[lens - 1 - i]:
+            flag = False
+            break
+    print(flag)
+
+
+duicheng(a)
+duicheng(b)
+duicheng(c)

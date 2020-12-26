@@ -1,0 +1,36 @@
+题目
+写一个函数alphabet_index，该函数参数是1个字符串，
+
+要求该函数返回一个新字符串，里面是 参数字符串中每个字母依次对应的 数字。如果是非字母，则忽略它
+
+字母"a" 和"A" 都对应 1, "b"和"B"都对应2, "c"和"C"对应3， 依次类推
+
+比如
+
+alphabet_index("Wow, does that work?")
+➞ "23 15 23 4 15 5 19 20 8 1 20 23 15 18 11"
+
+alphabet_index("The river stole the gods.")
+➞ "20 8 5 18 9 22 5 18 19 20 15 12 5 20 8 5 7 15 4 19"
+
+alphabet_index("We have a lot of rain in June.")
+➞ "23 5 8 1 22 5 1 12 15 20 15 6 18 1 9 14 9 14 10 21 14 5"
+解题思路
+将字符串统一为大写字母
+需要设置一个对比值
+大写A的ASCII码为65，但A对应1，所以设置一个对比值为64
+循环字符串，如果是字母则换算出它的ASCII码，再减去对比值
+答案
+def alphabet_index(strs):
+    strs = strs.upper()
+    temp = 64
+    res = ""
+    for i in strs:
+        if i.isalpha():
+            res += str(ord(i) - temp) + " "
+    print(res)
+
+
+alphabet_index("Wow, does that work?")
+alphabet_index("The river stole the gods.")
+alphabet_index("We have a lot of rain in June.")

@@ -1,0 +1,1424 @@
+python习题20190130
+ 
+'''
+一家商场在降价促销。如果购买金额50-100元（包含50元和100元）之间，会给10%的折扣，如果购买金额大于100元会给20%折扣。编写一程序，询问购买价格，再显示出折扣（10%或20%）和最终价格
+'''
+
+def print_zekou():
+    aount = int(input("请输入你购买的金额："))
+    if aount < 50:
+        print("不好意思你购买的金额没有折扣,需要支付的金额为：",aount)
+
+    if aount >= 50 and aount <= 100:
+        print("你购买的金额为 %d,折扣为：%d,需要支付的金额为%0.2f"%(aount,9,aount*0.9))
+    if aount > 100:
+        print("你购买的金额为 %d,折扣为：%d,需要支付的金额为%0.2f"%(aount,8,aount*0.8))
+
+'''
+10、求1 + 2 + 3 +….+100
+'''
+def print_num_yibai():
+    num = 0
+    for i in range(1,101):
+        num += i
+    print("1 + 2 + 3 +….+100=",num)
+
+'''
+判断一个数n能否同时被3和5整除
+'''
+def print_n_sanhuowu():
+    num = int(input())
+    if num ==0:
+        return 0
+    if num % 3==0 and num %5 ==0:
+        print("能被3和5整除")
+    else:
+        return 0
+
+'''
+一个足球队在寻找年龄在10到12岁的小女孩（包括10岁和12岁）加入。编写一个程序，询问用户的性别（m表示男性， f表示女性）和年龄，然后显示一条消息指出这个人是否可以加入球队，询问10次后，输出满足条件的总人数
+'''
+def print_f():
+    count = 0
+    for i in range(10):
+        num = input("m表示为男性，f表示为女性：")
+        if num == 'f':
+            sunm = int(input("请输入年龄："))
+            if sunm >=10 and sunm <= 12:
+                print("恭喜你可以加入球队！！")
+                count += 1
+
+        else:
+            print("不好意思，我们不需要男生！！")
+    print("加入球队的总人数为：",count)
+
+'''
+长途旅行中，刚到一个加油站，距下一个加油站还有200km，而且以后每个加油站之间距离都是200km。编写一个程序确定是不是需要在这里加油，还是可以等到接下来的第几个加油站再加油
+'''
+def print_km():
+    youxiang = int(input("你的油箱多大？，单位升："))
+    shxia = float(input("目前你的油箱还有多少油，按百分比，比如一半就是0.5："))
+    lucheng = int(input("你的车每升油能走多远："))
+    syou = (youxiang*shxia-5)*lucheng
+    if syou < 200:
+        print("在当前的加油站要加油")
+    else:
+        print("第%d个加油站加油"%(syou/200))
+
+#20190118
+'''
+现有面包、热狗、番茄酱、芥末酱以及洋葱，数字显示有多少种订购组合，其中面包必订，0不订，1订，比如10000，表示只订购面包
+'''
+def print_ding():
+    count = 0
+    for a in '1':
+        for b in '01':
+            for c in '01':    
+                for d in '01':
+                    print(a+b+c+d)
+                    count += 1
+    print("有%d种组合"%count)
+    
+'''
+基于上题：给出每种食物的卡路里（自定义），再计算出每种组合总共的卡路里
+'''
+def print_ding_kaluli():
+    count = 0
+    for a in '1':
+        for b in '01':
+            for c in '01':    
+                for d in '01':
+                    print(a+b+c+d,"不同组合的卡路里为",int(a)*100+int(b)*200+int(c)*300+int(d)*400)
+                    count += 1
+
+'''
+输入5个名字，排序后输出
+'''
+def print_fivename_sorted():
+    num = input("请输入5个名字，用英文都好隔开：")
+    num_list = num.split(',')
+    print(sorted(num_list))
+
+'''
+实现一个简单的单词本
+- 功能：
+- 可以添加单词和词义，当所添加的单词已存在，让用户知道；
+- 可以查找单词，当查找的单词不存在时，让用户知道；
+- 可以删除单词，当删除的单词不存在时，让用户知道；
+- 以上功能可以无限制操作，直到用户输入bye退出程序。
+
+'''
+def print_smiple_danciben():
+    num_dict = {}
+    while True:
+        num = input("请输入你要进行的操作（add：添加单词，select：查找单词，del：删除单词，bye：退出程序）：")
+        if num =='bye':
+            break
+        if num == 'add':
+            num_add = input("输入你要添加的单词：")
+            if num_add in num_dict.keys():
+                print("你输入的单词已存在！！")
+                continue
+            else:
+                num_value = input("输入你添加的单词的词义：")
+            num_dict[num_add] = num_value
+            
+        if num == 'select':
+            num_select = input("输入你要查找的单词：")
+            if num_select not in num_dict.keys():
+                print("你要查询的单词不存在！！")
+            else:
+                print(num_select," 单词词义为：",num_dict[num_select])
+        if num == 'del':
+            num_del = input("输入你要删除的单词：")
+
+            if num_del not in num_dict.keys():
+                print("你要删除的单词不存在！！")
+            else:
+                del num_dict[num_del]
+                print("已删除成功")
+        if num == 'bye':
+            print("程序已结束，感谢你的使用")
+            break
+        if num !='add' and num !='del' and num != 'select' and num != 'bye':
+            print("输入有误，请输入正确的操作符！！")
+            continue
+
+
+'''
+输入一个正整数，输出其阶乘结果
+
+'''
+def print_jiecheng(n):
+    num = 1
+    
+    if not isinstance(n,int):
+        return "输入的不是数值！！"
+    if n == 0:
+        return '1'
+    for i in range(1,n+1):
+        num *= i
+    print(n,"的阶乘为：",num)
+        
+'''
+输入3个数字，以逗号隔开，输出其中最大的数
+'''
+def print_three_num():
+    num = input("请输入三个数值并用英文逗号隔开：")
+    num_list = num.split(",")
+    num_son = int(num_list[0])
+    for i in num_list:
+        if num_son < int(i):
+            num_son = int(i)
+    print("最大的数为：",num_son)
+        
+'''
+输入一个年份，输出是否为闰年
+是闰年的条件：
+能被4整数但不能被100整除，或者能被400整除的年份都是闰年
+
+'''
+def print_runnian():
+    num_year = int(input("请输入你要判断的年份："))
+    if (num_year %4 ==0 and num_year %100 !=0) or num_year%400 == 0:
+        print(num_year,"是闰年！")
+
+    else:
+        print(num_year,"不是闰年！")
+#20190121
+'''
+求两个正整数m和n的最大公约数
+'''
+def print_max(n,m):
+    num_list=[]
+    if n%m == 0:
+        return m
+    if m%n == 0:
+        return n
+    for i in range(1,n+1):
+        if n%i == 0 and m%i ==0:
+            num_list.append(i)
+    for i in range(1,m+1):
+        if n%i == 0 and m%i ==0:
+            num_list.append(i)
+    return max(num_list)
+
+'''
+习题1：设定一个用户名和密码，用户输入正确的用户名和密码，则显示登录成功，否则提示登录失败，用户最多失败3次，否则退出程序。
+提示：使用while或者for来限定重试的次数，使用input获取用户输入使用 ==判断用户的用户名和密码。
+'''
+def print_username_passs():
+    num_one = 0
+    num_two = 3
+    while num_one < 3:
+        num_username = input("请输入用户名：")
+        num_passwed = input("请输入用户密码：")
+        if num_username == 'testname' and num_passwed == 'testpass':
+            return "登录成功"
+        else:
+            print("登录失败！！")
+            num_two -= 1
+            print("剩下%d次机会"%num_two)
+        num_one += 1
+    print("三次机会已经全部用完！！")
+    return ''
+
+'''
+习题2：自己实现一个函数，在一句话中查找某个单词的算法，存在返回索引号，否则返回False
+提示：使用句子中的坐标遍历句子的每一个位置，使用查找单词的长度结合使用切片来查找单词。例如：s[i:i+len(单词)]
+'''        
+def print_find_word(word,num):
+    for i in range(len(word)):
+        #print(i)
+        #print(word[i:len(num)+i])
+        if len(word[i:]) <= len(num):
+            print("没有找到！！")
+            return 0
+        elif word[i:len(num)+i] == num:
+            #print(word[i:len(num)-1])
+            print("索引：",i+1)
+            return 1
+        
+
+
+'''
+习题3：随机生成一个整数，1-100之间你最多猜5次，如果猜大了，提示大了小了，提示小了，猜对了，提示猜中。5次都没猜中，就猜没猜中。
+'''
+import random
+def print_random_cai():
+    try:
+        num_random = random.randint(1,100)
+        print(num_random )
+        for i in range(5):
+            num_one = int(input("请输入你要猜的数值:"))
+            if num_one > num_random:
+                print("猜大了！！")
+                continue
+            if num_one == num_random:
+                print("猜中了！！")
+                return 1
+            if num_one < num_random:
+                print("猜小了！！")
+                continue
+        print("没猜中！！")
+    except Exception as e:
+        print(e)
+
+'''
+习题4：使用while,计算随机数之和，超过100的时候，停止程序。随机数1-20的范围产生，要求记录一下产生的随机数，以及最后的和，以及随机数的个数。
+'''
+def print_random_yibai():
+    num_one = 0
+    num_list = []
+    while num_one < 100:
+        num_random = random.randint(1,20)
+        num_list.append(num_random)
+        num_one += num_random
+    print("产生的随机数为：",num_list,"最后的和为：",num_one,"随机数的个数为：",len(num_list))
+        
+        
+
+'''
+习题5：遍历字符串、列表，分别基于位置和和基于字符遍历
+'''
+def print_str_list(s):
+    for i in s:
+        print(i)
+    for i in range(len(s)):
+        print(s[i])
+
+
+#20190122
+'''
+习题6：遍历一个列表中的嵌套列表和元组的所有元素,将1-12的数字进行输出！[[[1,2,3],4,5],7,8,(9,10,(11,12))]
+'''
+def print_list_tuple():
+    num_tuple = [[[1,2,3],4,5],7,8,(9,10,(11,12))]
+    for i in num_tuple:
+        if isinstance(i,(list,tuple)):
+            for j in i:
+                if isinstance(j,(list,tuple)):
+                    
+                    for c in j:
+                        print(c)
+                else:
+                    print(j)
+        else:
+            print(i)
+
+
+
+'''
+判断一个数是否是素数
+'''
+def print_sushu(n):
+    
+    if n == 1 or n == 2:
+        print("是素数")
+        return 0
+
+    for i in range(2,n):
+        if n%i == 0:
+            print("不是素数")
+            return 1
+        else:
+            print("是素数")
+            return 0
+
+
+'''
+求100以内的素数和
+'''
+def print_yibai_sushu():
+    num_one = 0
+    for i in range(3,101):
+        num_two = print_sushu(i)
+        print(i)
+        if num_two == 0:
+            num_one += i
+    return num_one
+        
+    
+'''
+使用 for 的方式，求一下100以内奇数之和
+'''
+def print_for_jishu():
+    num_one = 0
+    for i in range(1,101,2):
+        num_one += i
+    print(num_one)
+    
+'''
+用户输入多个数字，当输入偶数的时候求和，输入奇数，不求和，输入.（一个点）的时候结束求和，打印求和结果
+'''
+
+def print_oushu_qiuhe():
+    try:
+        num_two = 0
+        while True:
+            num_one = input("输入数值，偶数求和，奇数不求和,\".\"结束求和：")
+            if num_one == '.':
+                print(num_two)
+                break
+            elif int(num_one)%2 == 0:
+                num_two += int(num_one)
+    except Exception as e:
+        print(e)
+
+'''
+嵌套循环输出10-50中个位带有1-5的所有数字:
+方法1：数字和10取余，判断是否大于0并且小于等于5
+方法2：将数字转换为str，取各位的字符判断字符是否在1-5内。
+方法3：拼接数字
+'''
+def print_shidegewei():
+    try:        
+        num_list = []
+        for i in range(10,51):
+            if i%10 >0 and i%10 <= 5:
+                print(i)
+                num_list.append(i)
+                
+        return num_list
+    except Exception as e:
+        print(e)
+'''
+输入3个数字，达到3个数字求和，结束程序
+'''
+def print_three_num():
+    try:
+        num_one = 0
+        for i in range(3):
+            num = int(input("请输入数值"))
+            num_one += num
+        return num_one
+    except Excepyion as e:
+        print(e)
+
+'''
+用户输入不同的数据，当输入的数据达到3个数字的时候，求和结束程序。（数字可以是整数）
+提示：判断是否整数的方法，isdigit()
+遍历所有的输入数据，判断是否在0-9的字符串范围内
+'''
+def print_three_number():
+    try:
+        counts = 0
+        num_one = 0
+        while True:
+            num = input("请输入：")
+            if num.isdigit():
+                counts += 1
+                num_one += int(num)
+            if counts == 3:
+                return num_one
+    except Exception as e:
+        print(e)
+
+
+'''
+用嵌套列表的方式，遍历输出一个矩阵
+'''
+def print_qiantao():
+    num_list = [[1,2,3],[4,5,6],[7,8,9]]
+    for i in num_list:
+        for j in i:
+            print(j)
+
+
+'''
+
+'''
+def print_list_num():
+    try:
+        num_list = [[1,2,3],[4,5,6],[7,8,9]]
+        num_one = 0
+        num_two = 0
+        for i in range(len(num_list)):
+            for j in range(len(num_list[i])):
+                if i == j:
+                    num_one += num_list[i][j]
+            num = len(num_list[i])-1-i    
+            num_two += num_list[i][num]
+        print("正对角之和：",num_one,"反对角之和：",num_two,)    
+    except Exception as e:
+        print(e)        
+
+'''
+求以下矩阵四边元素之和
+l = [
+     [1,2,3,4,5], 
+     [1,2,3,4,5], 
+     [1,2,3,4,5],
+     [1,2,3,4,5],
+     [1,2,3,4,5]  
+]
+'''                
+def print_sibinayuanshuzhihe():
+
+    num_list = [[1,2,3,4,5],
+        [1,2,3,4,5], 
+             [1,2,3,4,5],
+             [1,2,3,4,5],
+             [1,2,3,4,5] ]
+    num_one = 0
+    for i in range(len(num_list)):
+        if i == 0 or i == len(num_list)-1:
+            for j in num_list[i]:
+                num_one += j
+        else:
+            num_one += num_list[i][0] + num_list[i][len(num_list)-1]
+            continue
+    print(num_one)
+                
+'''
+统计单词中包含字母a的单词个数
+'''
+def print_danci_geshu(n):
+    num = 0
+    num_one = n.split()
+    for i in num_one:
+        if 'a' in i:
+            num += 1
+    print(num)
+
+
+
+'''
+成绩等级判断 利用条件运算符的嵌套来完成此题：学习成绩>=90分的同学用A表示， 60-89分之间的用B表示，60分以下的用C表示
+'''
+
+def print_student_score(n):
+    if n >= 90:
+        print("A")
+    if n >= 60 and n < 90:
+        print("B")
+    if n < 60:
+        print("C")
+
+#20190125
+'''
+实现数学中多项式求和公式的打印 比如：a6x^6 + a5x^5 + a4x^4 + a3x^3 + a2x^2 + a1x^1 + a0
+'''
+def print_duoxiangshi(n):
+    num_str = ''
+    num_list = range(0,n+1)
+    for i in num_list[::-1]:
+        if i ==0:
+            num_str += 'a'+str(i)
+        else:
+            num_str += 'a'+str(i)+'x'+'^'+str(i)+'+'
+    print(num_str)
+'''
+统计名字列表中，各名字的首字母在名字列表中出现的次数
+'''
+def print_shouzimu():
+    names = ["huhongqiang","zhangsan","lisi","wangwu","wuda","ziliao"]
+    num_dict = {}
+    for i in names:
+        if i[0] in num_dict.keys():
+            num_dict[i[0]] += 1
+        else:
+            num_dict[i[0]] = 1
+    print(num_dict)
+
+'''
+输入三个数，判断是否能构成三角形 能构成三角形三边关系： 三边都大于零 两边之和大于第三边，两边之差小于第三边
+'''
+def print_sanjiao():
+    num_one = int(input("请输入第一边："))
+    num_two = int(input("请输入第二边："))
+    num_three = int(input("请输入第三边："))
+    if num_one ==0 or num_two ==0 or num_two == 0:
+        return "有一边为0，不是三角形！！"
+    if not (num_one+num_two >num_three and num_one+num_three >num_two and num_two + num_three >num_one):
+        return "任意两边之和没有大于第三边，不是三角形！！"
+
+    if not (num_one -num_two <num_three or num_one - num_three or num_two - num_three < num_one):
+        return "任意两边相减没有小于第三边，不是三角形！！"
+    else:
+        return "是三角形"
+
+
+'''
+实现字典的fromkeys方法
+例如：
+seq = ('name', 'age', 'sex')
+dict = dict.fromkeys(seq, 10)
+print "New Dictionary : %s" % str(dict)
+结果：New Dictionary : {'age': 10, 'name': 10, 'sex': 10}
+'''
+def print_dict_fromkeys(seq,n):
+    num_dict = {}
+    for i in seq:
+        num_dict[i] = n
+    return num_dict
+
+'''
+键盘读入一字符串，逆序输出
+'''
+def print_sorted():
+    num_str = input("请输入一串字符串：")
+    print(num_str[::-1])
+
+
+'''
+读入一个整数n，输出n的阶乘
+'''
+def print_jiecheng(n):
+    num_str = ''
+    if n ==0 or n ==1:
+        return str(n)
+    for i in range(1,n+1):
+        if i == n:
+            num_str += str(n)
+        else:
+            num_str += str(i)+'x'
+    return num_str
+        
+'''
+打印1/2, 1/3, 1/4,….1/10
+'''
+def print_chushi(n):
+    if n ==0 or n == 1:
+        return str(n)
+    for i in range(2,n+1):
+        print('1/%d'%i,end= ',')
+
+'''
+写一个函数实现一个数学公式
+a**b
+'''    
+def print_jiechenggshi(a,b):
+    return a**b
+
+'''
+输入数字a，n，如a，4，则打印a+aa+aaa+aaaa之和
+'''
+def print_a_n(a,n):
+    num_str = ''
+    for i in range(1,n+1):
+        if i==n:
+            num_str += a*i
+        else:
+            num_str += a*i+"+" 
+    return num_str
+
+'''
+求100个随机数之和，随机数要求为0—9的整数
+'''
+import random
+def print_suijishu():
+    num_int = 0
+    for i in range(100):
+        num_int += random.randint(1,9)
+    return num_int
+
+'''
+要求在屏幕上分别显求1到100之间奇数之和与偶数之和
+'''
+def print_jishu_oushu_zhihe():
+    num_strou = ''
+    num_strji = ''
+    num_ou = 0
+    num_ji = 0
+    for i in range(1,101):
+        if i %2 == 0:
+            num_ou += i
+            num_strou += str(i)+'+'
+        if i %2 != 0:
+            num_ji += i
+            num_strji += str(i)+'+'
+    print('偶数之和：',num_ou,'奇数之和：',num_ji)
+    print(num_strou)
+    print(num_strji)
+
+'''
+输入10个数，并显示最大的数与最小的数
+'''
+def print_max_min_shu(lista):
+    num_max = lista[0]
+    num_min = lista[0]
+    for i in lista:
+        if i > num_max:
+            num_max = i
+        elif i<num_min:
+            num_min = i
+    print("最大的数：",num_max,"最小的数：",num_min)
+    
+'''
+给一个不多于5位的正整数，要求：一、求它是几位数，二、逆序打印出 各位数字
+'''
+def print_len_sorted(n):
+    num_str = str(n)
+    print(len(num_str))
+    print(num_str[::-1])
+
+
+'''
+求1000以内的所有水仙花数（水仙花数：它的每个位上的数字的 n 次幂 之和等于它本身，例如：1^3 + 5^3+ 3^3 = 153）
+'''
+def print_shuixianhua():
+    num_int = 0
+    num_list = []
+    for i in range(1,1001):
+        num_str = len(str(i))
+        for j in str(i):
+            num_int += int(j)**num_str
+        if num_int == int(i):
+            num_list.append(i)
+        num_int = 0
+    return num_list
+
+'''
+编程求s=1!+2!+3!+…..+n!
+'''
+def print_meigeshu_jiecheng(n):
+    num_int = 1
+    num_num = 0
+    for i in range(1,n+1):
+        for j in range(1,i+1):
+            num_int *= j
+        num_num += num_int
+        num_int = 1
+    print(num_num)
+
+'''
+钞票换硬币 把一元钞票换成一分、二分、五分硬币（每种至少一枚），有多种换法，分 别有哪些？
+'''
+def print_huangyingbi():
+    num_one = 100-1-2-5
+    num_list = []
+    num_num = 0
+    for i in range(int(num_one/1)):
+        for j in range(int(num_one/2)):
+            for k in range(int(num_one/5)):
+                if (i+2*j+k*5) == num_one:
+                    num_num += 1
+                    num_list.append((i,j,k))
+
+    print(num_num)
+    print(num_list)
+
+'''
+自己实现在一句话中查找某个单词的算法，存在返回索引号，否则返回False
+'''
+def print_find_word(stra,strb):
+    length = len(strb)
+    for i in range(len(stra)):
+        if stra[i:i+length] == strb:
+            return i
+    return False
+
+#print(print_find_word("you are a beautiful girl good","goods"))
+    
+'''
+读入一个十进制整数，实现十进制转二进制算法将其转成二进制数 要求：不能使用现成进制转换函数，自己写代码实现
+'''
+def print_shijinzhi_erjinzhi(n):
+    num_str = ''
+    num_int = n
+    while True:    
+        #print(num_str)    
+        num_str += str(int(num_int%2))
+        num_int = int(num_int/2)
+        if num_int == 0:
+            return num_str[::-1]
+
+'''
+读入一组数字，然后把每组数字加1后输出，比如 123，输出234
+'''
+def print_shuzijiayi(n):
+    num_num = ''
+    for i in str(n):
+        num_num += str(int(i)+1)
+    return num_num
+
+'''
+随机生成10位密码 包含大小写、数字
+'''
+import random
+import string
+def print_lower_upper_digit():
+    num_lower = list(string.ascii_lowercase)
+    random.shuffle(num_lower)
+    num_upper = list(string.ascii_uppercase)
+    random.shuffle(num_upper)
+    num_digit = list(string.digits)
+    random.shuffle(num_digit)
+    num_num = ''.join(num_lower[:4]+num_upper[:4]+num_digit[:4])
+    print(num_num)
+        
+
+#20190128
+
+'''
+删除一个字符串中的小写字母（map）
+'''
+import string
+def print_upper(s):
+    num_str = ''
+    for i in s:
+        if i in string.ascii_uppercase:
+            num_str += i
+    return num_str
+
+'''
+大于5的数字输出（filter）
+'''
+def print_dayu_five(num):
+    
+    for i in num:
+        if int(i)>5:
+            print(i)
+'''
+找到列表中第二大的数，可以用多种方法解决
+思路：
+找到最大的删除掉，再找最大的
+排好序找倒数第二个
+遍历，声明两个变量，一个存最大的，一个存第二大的，然后逐一对比
+'''
+def print_sonunt_shu(num):
+    num_one = num[0]
+    num_two = num[0]
+    for i in num:
+        if i>num_one:
+            num_two = num_one
+            num_one = i
+            
+    print(num_two)
+    print(sorted(num)[-2])
+    num_max = max(num)
+    num.remove(num_max)
+    print(max(num))
+    
+'''
+python代码得到2个列表的交集与差集 不许用set
+交集思路：遍历list1，判断是否在list2中，在的话，则存入一个列表中。
+差集思路：分别遍历list1和2，如果不在对方的list中，则存入一个列表中
+'''
+def print_jiaoji_chaji(lista,listb):
+    num_inlist = []
+    num_notinlist = []
+    for i in lista:
+        if i in listb:
+            num_inlist.append(i)
+        else:
+            num_notinlist.append(i)
+    for j in listb:
+        if j in lista:
+            continue
+        elif j in num_notinlist:
+            continue
+        else:
+            num_notinlist.append(j)
+    print("交集为：",num_inlist)
+    print("差集：",num_notinlist)
+
+'''
+求一个字符串中的字母个数函数需判断传入参数的类型。必须使用ascii来判断是否字母
+'''
+import string
+def print_str_geshu():
+    num_str = input("输入一串字符串：")
+    num_number = 0
+    for i in num_str:
+        #if i in string.ascii_letters:
+        if (ord(i) >= 97 and ord(i) <= 122) or (ord(i)>=65 and ord(i)<=90):
+            num_number += 1
+    print("传入的字符串中字母的个数为：",num_number)        
+
+'''
+写一个函数，这个函数要计算浮点数乘法的一万次相乘后的时间耗时，浮点数可以使用随机小数
+'''
+import time,random
+def print_func(n):
+    start_time = time.time()
+    for i in range(n):
+        random.random()*random.random()
+    print(time.time()-start_time)
+
+'''
+定义函数add(a,b)要求有个值是result来存结果
+
+1 a,b 数字，相加
+2 a,b 字符串，就当做字符串相加
+3 a,b 如果list就当list相加
+'''
+def print_add(a,b):
+    result = a+b
+    print(result)
+
+'''
+函数参数传入5个字母，声明一个可变参数的函数，拼成一个单词
+'''
+def print_pingjie(*agr):
+    result = ''
+    for i in agr:
+        result += i
+    print(result)
+'''
+使用必填参数、默认参数、可变元组参数、可变字典参数（value）计算一下单词的长度之和
+'''
+def print_dancichangdu(a,b='ss',*agr,**key):
+    result = ''
+    result += a
+    result +=b
+    for i in agr:
+        result += i
+    for v in key.values():
+        result += v
+    print('a:',a)
+    print('b:',b)
+    print('agr:',agr)
+    print('key:',key)
+    print(result)
+'''
+使用map把[1,2,3]变为[2,3,4]
+'''
+def print_map_func(x):
+    return x+1
+
+#print(list(map(print_map_func,[1,2,3])))
+
+'''
+使用map，大写变小写
+'''
+def print_upper_lower():
+    print(list(map(lambda x:x.lower(),'ABC')))
+    print(list(map(lambda x:chr(ord(x)+32),'ABC')))
+
+'''
+打印2000-3000之间被7整除但不被5整除的数，以，(逗号)分隔
+'''
+def print_five_seven():
+    for i in range(2000,3000):
+        if i%7 ==0 and i%5 !=0:
+            print(i,end=',')
+
+'''
+2、输出9*9口诀表
+'''
+def print_nine_nine():
+    for i in range(1,10):
+        for j in range(1,i+1):
+            print(str(i)+'*'+str(j)+'=',i*j,' ',end='')
+        print()
+
+'''
+计算1 - 1/2 + 1/3 - 1/4 + … + 1/99 - 1/100 + …直到最后一项的绝对值小于10的-5次幂为止
+'''
+def print_fivemi():
+    result = 0.0
+    n = 1
+    while True:
+        if abs(1/n) < pow(10,-5):
+            break
+        else:
+            if n%2 ==1:
+                result += 1/n
+                n += 1
+            else:
+                result -= 1/n
+                n += 1
+    print(result)
+
+'''
+编程将类似“China”这样的明文译成密文，
+密码规律是：用字母表中原来
+的字母后面第4个字母代替原来的字母，不能改变其大小写，如果超出了字母
+表最后一个字母则回退到字母表中第一个字母
+'''
+import sys
+def print_mingwen_miwen(s):
+    result = ''
+    if not isinstance(s,str):
+        sys.exit(1)
+    for i in s:
+        if (i >= 'a' and i<='v') or (i >= 'A' and i<='V'):
+            result += chr(ord(i)+4)
+        else:
+            result += chr(ord(i)-22)
+    print(result)
+
+'''
+输出以下如下规律的矩阵
+1 2 3 4 5
+2 4 6 8 10
+3 6 9 12 15
+4 8 12 16 20
+'''
+def print_juzh():
+    for i in range(1,5):
+        for j in range(1,6):
+            print(i*j,end=' ')
+        print()
+'''
+对一个列表求和，如列表是[4, 3, 6]，求和结果是 [4, 7, 13]，每一项的值都等与该项的值加上前一项的值
+'''
+def print_liebiaohe(lista):
+    result = 0
+    num_list = []
+    if not isinstance(lista,list):
+        return -1
+    for i in lista:
+        num_list.append(i+result)
+        result += i
+    print(num_list)
+'''
+一个字符串 list，每个元素是 1 个 ip，输出出现次数最多的 ip
+'''    
+def print_ip():
+    num_list = ["168.1.1.1","168.1.1.1","168.1.1.2","168.1.1.3"]
+    num_dict = {}
+    for i in num_list:
+        if i not in num_dict.keys():
+            num_dict[i] = 1
+        else:
+            num_dict[i] += 1
+        #一句可以搞定
+        #num_dict[i] = num_list.count(i)
+    for k,v in num_dict.items():
+        if v == max(num_dict.values()):
+            print("出现次数最多的IP：",k)
+
+'''
+实现一个简易版的计算器，功能要求：加、减、乘、除，支持多数同时进行计算
+'''
+def print_jisuanqi(*agr):
+    num = input("请输入你需要进行的操作，乘法*，除法/，加法+，减法-")
+    result = 0.0
+    if num == '*':
+        result = 1
+        for i in agr:
+            result *=i
+    elif num == '/':
+        result = 1
+        for i in agr:
+            result /= i
+    elif num == '-':
+        result = agr[0]
+        for i in agr[1:]:
+            result -= i
+    elif num == '+':
+        for i in agr:
+            result += i
+    else:
+        print("输入操作符有误！！")
+    print(result)
+
+'''
+有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13...求出这个数列的前20项之和
+'''
+def print_qian_ershixiangzhihe():
+    num_one = 0
+    num_two = 1
+    result = 0
+    num = 0
+    num_result = 0
+    for i in range(1,21):
+        result = num_one+num_two
+        num = num_two + result
+        num_result += num/result
+        num_one = num_two
+        num_two = result
+        print("result:",result,'num:',num)
+    print(num_result)
+
+'''
+画等（腰）边三角形（实心、空心）
+'''
+def print_sanjiaoxing():
+    for i in range(1,7):
+        print('\n')
+        for k in range(i,7):
+            print(' ',end='')
+        for j in range(i):
+            print('* ',end='')
+
+    for r in range(1,7):
+        print('\n')
+        for s in range(r,7):
+            print(' ',end='')
+        for l in range(r):
+            if r >= 3 and r < 6:
+                if l == 0 or l==r-1:
+                    print('*  ',end='')
+                else:
+                    print('  ',end='')
+            else:
+                print('* ',end='')
+
+
+'''
+画倒等边三角形
+'''
+def print_daosanjiao():
+    for i in range(1,7):
+        print()
+        for k in range(i):
+            print(' ',end='')
+        for j in range(i,7):
+            print(' *',end = '')
+    
+
+
+
+#20190130
+'''
+要求实现一函数，该函数用于求两个集合的差集，结果集合中包含所有属于第一个集合但不属于第二个集合的元素
+'''
+def print_chaji(lista,listb):
+    num_list = []
+    for i in lista:
+        if i not in listb:
+            num_list.append(i)
+    print("lista:",lista)
+    print("listb:",listb)
+    print("num_list:",num_list)
+
+
+'''
+找出一段句子中最长的单词及其索引位置，以list返回
+'''
+import string
+def print_len_zuichang(stra):
+    for i in stra:
+        if i in string.punctuation:
+            stra = stra.replace(i,' ')
+    stra_list = stra.split()
+    print(stra_list)    
+    str_word = sorted(stra.split(),key=len,reverse=True)[0]
+    #直接一步可以求出索引：
+    print(stra.find(sorted(stra.split(),key=len,reverse=True)[0]))
+    print(str_word)
+    str_index = 0
+    str_len = len(str_word)
+    for j in range(len(stra)):
+        if stra[j:j+str_len] == str_word:
+            str_index = j
+    return str_word,str_index
+    
+    
+
+'''
+返回序列中的最大数
+序列有数组、列表、字符串
+'''
+def print_xulie(stra):
+    if not isinstance(stra,(str,list,tuple)):
+        return -1
+    num_one = float(stra[0])
+    if isinstance(stra,str):
+        for i in stra:
+            if float(i) > num_one:
+                num_one = float(i)
+    else:
+        for j in stra:
+            if float(j) > num_one:
+                num_one = float(j)
+    return num_one
+            
+'''
+把一个字典的 key,value互换
+'''        
+def print_jiaohuankeyvalue(dicts):
+    dicta = {}
+    for k,v in dicts.items():
+        dicta[v] = k
+    return dicta
+
+'''
+统计列表中列表的数量
+'''
+def print_list_list(lista):
+    num_list = 0
+    for i in lista:
+        if isinstance(i,list):
+            num_list += 1
+    return num_list
+
+#一句话搞定
+#len(list(filter(lambda x:isinstance(x,list),[1,[2],[3],"a"])))
+
+
+'''
+删除一个列表里面所有的4
+'''
+def print_del_four(lista):
+    for i in range(lista.count(4)):
+        lista.remove(4)
+    return lista
+
+'''
+删除列表中重复元素
+'''
+def print_chfuyuansu(lista):
+    for i in lista:
+        for j in range(lista.count(i)-1):
+            lista.remove(i)
+    return lista
+
+
+'''
+找出boy是第几个单词
+'''
+def print_boy(stra):
+    print(stra.split().index('boy')+1)
+
+'''
+求出s中长度最长的字符串
+'''
+
+def print_s_len(stra):
+    print(sorted(stra.split(),key = len,reverse = True)[0])
+        
+'''
+L中分别按照学生姓名和学生成绩排序
+'''
+def one(s):
+    return s[0]
+def two(s):
+    return s[1]
+
+def print_paixuone(s):
+    print(sorted(s,key=one))
+    print(sorted(s,key=two))
+
+'''
+按照句子中每个单词的首字母进行排序，不区分大小写
+'''
+def first_letter(s):
+    return s[0].lower()
+def print_shouzimu(s):
+    lista = s.split()
+    lista.sort(key=first_letter)
+    print(lista)
+
+
+'''
+按照字符串每个数字的和进行排序
+'''
+def sum(s):
+    result = 0
+    for i in s:
+        result += int(i)
+    return result
+def print_sum(s):
+    lista = s.split()
+    lista.sort(key=sum,reverse = True)
+    print(lista)
+
+'''
+将两个list ，连接成[(1,4),(2,5),(3,6)]
+'''
+def print_two_list(lista,listb):
+    num_list = []
+    for i in range(len(lista)):
+        num_list.append((lista[i],listb[i]))
+    print(num_list)
+
+'''
+生成二维数组[[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+'''
+def print_erwei_list():
+    num_list = []
+    num = 0
+    for  i in range(3):
+        num_num = []
+        for j in range(3):
+            num_num.append(num)    
+            num += 1
+        num_list.append(num_num)
+    print(num_list)
+    
+'''
+二维矩阵转置
+'''
+def print_juzhengzhuanzhi():
+    a=[
+       [1,2,3],
+       [4,5,6],
+       [7,8,9],
+       [10,11,12]
+      ] 
+    num_list = []
+    for i in range(3):
+        num_num = []
+        for j in a:
+            num_num.append(j[i])
+        num_list.append(num_num)
+    print(num_list)
+
+
+'''
+删除二维矩阵的第1列
+'''
+def print_shchujuzhdiyilie():
+    a=[
+       [1,2,3],
+       [4,5,6],
+       [7,8,9],
+       [10,11,12]
+      ] 
+    num_list = []
+    for i in a:
+        num_num = []
+        for j in range(1,3):
+            num_num.append(i[j])
+        num_list.append(num_num)
+    print(num_list)
+
+'''
+把一个列表偶数位作为key，奇数位作为value，转换成字典
+'''
+def print_oushulie_key(lista):
+    num_dict = {}
+    for i in range(1,len(lista),2):
+        num_dict[lista[i]] = lista[i-1]
+    print(num_dict)
+
+'''
+有一个长度为101的数组，存在1-100的数字，有一个是重复的，找出这个重复的数字
+'''
+def print_chfushuzi(lista):
+    for i in lista:
+        if lista.count(i) >=2:
+            print(i)
+            break
+
+
+'''
+两个长度相同的list，一个里面的做字典的key，一个里面做字典的value，请写个函数实现
+'''
+def print_dict_key_value(lista,listb):
+    num_dict = {}
+    for i in range(len(lista)):
+        num_dict[lista[i]] = listb[i]
+    print(num_dict)
+
+
+'''
+统计一个字符串中每一个字母累计出现的次数
+'''
+def print_tjizicxiancishu(stra):
+    num_dict = {}
+    for i in stra:
+        if i not in num_dict.keys():
+            num_dict[i] = 1
+        else:
+            num_dict[i] += 1
+    print(num_dict)
+
+
+'''
+统计一个字符串中每个单词出现的次数
+'''
+def print_dancicxiancishu(stra):
+    num_dict = {}
+    num = stra.split()
+    for i in num:
+        num_dict[i] = num.count(i)
+    print(num_dict)
+
+'''
+从键盘输入两个数，并比较其大小，直到输入e/E退出程序
+'''
+def print_caidaxiao():
+    while True:
+        num_one = input("请输入第一个要比较的数：")
+        num_two= input("请输入第二个要比较的数：")
+        if num_one in 'eE' or num_two in 'eE':
+            print("结束并退出！！")
+            break
+        elif int(num_one) > int(num_two):
+            print("第一个数大于第二个数")
+        elif int(num_one) < int(num_two):
+            print("第一个数小于第二个数")
+        else:
+            print("两个数相等！！")
+    
+
+'''
+将列表元素交替地作为建和值来创建字典
+'''
+def print_jiaotizuo_key_values(lista):
+    num_dict = {}
+    for i in range(0,len(lista),2):
+        num_dict[lista[i]] = lista[i+1]
+    print(num_dict)
+
+'''
+分别输出字符串中奇数坐标和偶数坐标的字符
+'''
+def print_jishu_oushu_zuobiao(stra):
+    num_list = [[],[]]
+    for i in range(len(stra)):
+        if i%2 ==0:
+            num_list[0].append(stra[i])
+        else:
+            num_list[1].append(stra[i])
+    print("奇数坐标的字符为：",num_list[1])
+    print("偶数坐标的字符为：",num_list[0])
+        
+'''
+将一个字典的 key和value 互换
+'''
+def print_jiaohuan_value_key(dicta):
+    num_dict = {}
+    for k,v in dicta.items():
+        num_dict[v] = k
+    print("原始的字典：",dicta)
+    print("转换后的字典：",num_dict)
+
+'''
+将一个多重嵌套的列表的元素进行互换，存到另一个同等维度的嵌套列表中，例如：[[1,2,3],[4,5,6]]互换后变成[[1,4],[2,5],[3,6]]
+'''
+def print_lista_listb(lista):
+    num_listb = []
+    for i in range(len(lista[0])):
+        num_num = []
+        for j in range(len(lista)):
+            num_num.append(lista[j][i])
+        num_listb.append(num_num)
+    print(num_listb)
+
+'''
+有一个3 x 4的矩阵，要求编程求出其中值最大的那个元素的值，以及其所在的行号和列号，矩阵可以通过嵌套列表来模拟
+'''
+def print_sanchengsi_zuidazhi():
+    a = [
+        [1,2,3],
+        [4,30,6],
+        [7,8,9],
+        [10,11,12]
+    ]
+    num_num = a[0][0]
+    num_one = 0
+    num_two = 0
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            if a[i][j] > num_num:
+                num_one = i
+                num_two = j
+                num_num = a[i][j]
+    print("最大的元素为%d,行号为%d,列号为%d!"%(num_num,num_one+1,num_two+1))
+
+                
+'''
+递归实现嵌套列表求和
+'''
+def print_list_qiantao_qiuhe(lista):
+    num_num = 0
+    for i in lista:
+        if not isinstance(i,list):
+            num_num += i
+        else:
+            num_num += print_list_qiantao_qiuhe(i) 
+    return num_num
+
+
+if __name__=="__main__":
+    pass
+#encoding=utf-8
+
+ 
