@@ -106,6 +106,45 @@ file.flush()
 file.close()
 exit(0)
 
+# Python在字符串中动态插值:
+在字符串插值的四种方法 | Python
+ 
+1. 通过(%)操作符拼接
+>>>print('%s %s!' % ('Hello', 'World'))
+Hello World!
+2. 通过str.format()方法拼接
+
+ 
+>>>print('{} {}!'.format('Hello', 'World'))
+Hello World!
+通过这种方式拼接字符串需要注意的是字符串中{}的数量要和format方法参数数量一致，否则会报错。
+
+3. 通过F-strings拼接
+
+ 
+>>> s1 = 'Hello'
+>>> s2 = 'World'
+>>> print(f'{s1} {s2}!')
+Hello World!
+在python3.6.2版本中，PEP 498 提出一种新型字符串格式化机制，被称为“字符串插值”或者更常见的一种称呼是F-strings，F-strings提供了一种明确且方便的方式将python表达式嵌入到字符串中来进行格式化
+
+4. 通过string模块中的Template对象拼接
+
+>>> from string import Template
+>>> s = Template('${s1} ${s2}!')
+>>> s.safe_substitute(s1='Hello',s2='World')
+Hello World!
+Template的实现方式是首先通过Template初始化一个字符串。这些字符串中包含了一个个key。通过调用substitute或safe_subsititute，将key值与方法中传递过来的参数对应上，从而实现在指定的位置导入字符串。这种方式的好处是不需要担心参数不一致引发异常，如：
+
+ 
+>>> from string import Template
+>>> s = Template('${s1} ${s2} ${s3}!')
+>>> s.safe_substitute(s1='Hello',s2='World')
+Hello World ${s3}!
+
+
+
+
 # python读取xml文件的内容并且解析1
 from xml.etree import ElementTree as et ## 这个用来解析xml字符串
 xml1=open("person.xml") 
