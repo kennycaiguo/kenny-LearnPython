@@ -1,0 +1,2 @@
+打开cmd，将原来的aiohttp卸载，pip uninstall aiohttp
+然后再重新安装：pip3 install aiohttp,完成。
